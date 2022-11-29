@@ -276,7 +276,7 @@ def start(phone,password):
 if __name__ == '__main__':
     list_d = {}
     urls = get_urls()
-    print('主接口失效，进入备用接口，正在加载今日直播数据ing...')
+    print('正在加载今日直播数据ing...')
     threads = []
     for url in urls:
         threads.append(
