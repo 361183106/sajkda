@@ -26,6 +26,7 @@ from tools.ql_api import get_envs, disable_env, post_envs, put_envs
 from tools.tool import timestamp, get_environ, print_now
 from tools.send_msg import push
 from china_telecom import ChinaTelecom
+import threading
 
 class TelecomLotter:
     def __init__(self, phone, password):
@@ -223,7 +224,19 @@ def get_cookie():
         print('共配置{}条CK,请添加环境变量,或查看环境变量状态'.format(len(ck_list)))
     return ck_list 
 
+
+def start(phone,password):
+    if phone == "" or password == "":
+        print("未填写相应变量 退出")
+        exit(0)
+    main(phone, password)
+    print("\n")
+
+
+
+
 if __name__ == '__main__':
+    l = []
     user_map = get_cookie()
     for i in range(len(user_map)):
         phone=""
@@ -236,6 +249,10 @@ if __name__ == '__main__':
         if phone == "" or password == "":
             print("未填写相应变量 退出")
             exit(0)
-        main(phone, password)
+        #main(phone, password)
+        p = threading.Thread(target=start,args=(phone,password))
+        l.append(p)
+        p.start()
         print("\n")
-
+    for i in l:
+        i.join()
