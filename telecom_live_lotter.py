@@ -275,27 +275,32 @@ def start(phone,password):
 
 if __name__ == '__main__':
     list_d = {}
-    urls = get_urls()
-    print('正在加载今日直播数据ing...')
-    threads = []
-    for url in urls:
-        threads.append(
-            threading.Thread(target=get_data, args=(url,))
-        )
+    try:
+        url = "https://gitee.com/kele2233/genxin/raw/master/telecomLiveInfo.json"
+        #url = "https://raw.githubusercontent.com/limoruirui/Hello-Wolrd/main/telecomLiveInfo.json"
+        list_d = get(url, timeout=5).json()
+    except:
+        urls = get_urls()
+        print('主接口失效，进入备用接口，正在加载今日直播数据ing...')
+        threads = []
+        for url in urls:
+            threads.append(
+                threading.Thread(target=get_data, args=(url,))
+            )
 
-    for thread in threads:
-        thread.start()
+        for thread in threads:
+            thread.start()
 
-    for thread in threads:
-        thread.join()
+        for thread in threads:
+            thread.join()
 
-    
-    f = 1
-    for i in all_list:
-        list_d['liveRoom' + str(f)] = i
-        f += 1
-    print('直播数据加载完毕')
-    print('\n')
+        
+        f = 1
+        for i in all_list:
+            list_d['liveRoom' + str(f)] = i
+            f += 1
+        print('直播数据加载完毕')
+        print('\n')
 
 
     l = []
