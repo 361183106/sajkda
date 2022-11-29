@@ -28,6 +28,7 @@ from tools.tool import timestamp, get_environ, print_now
 from tools.send_msg import push
 from china_telecom import ChinaTelecom
 import threading
+import time
 
 class TelecomLotter:
     def __init__(self, phone, password):
@@ -175,25 +176,62 @@ class TelecomLotter:
         else:
             print(f"获取奖品信息失败, 接口返回" + str(data))
 
+
+all_list = []
+def get_urls():
+    urls = []
+    for i in range(1, 36):
+        if i < 10:
+            code_str = '0' + str(i)
+        else:
+            code_str = str(i)
+        url = f'https://xbk.189.cn/xbkapi/lteration/index/recommend/anchorRecommend?provinceCode={code_str}'
+        urls.append(url)
+    return urls
+def get_data(url):
+    random_phone = f"1537266{randint(1000, 9999)}"
+    headers = {
+        "referer": "https://xbk.189.cn/xbk/newHome?version=9.4.0&yjz=no&l=card&longitude=%24longitude%24&latitude=%24latitude%24&utm_ch=hg_app&utm_sch=hg_sh_shdbcdl&utm_as=xbk_tj&loginType=1",
+        "user-agent": f"CtClient;9.6.1;Android;12;SM-G9860;{b64encode(random_phone[5:11].encode()).decode().strip('=+')}!#!{b64encode(random_phone[0:5].encode()).decode().strip('=+')}"
+    }
+    # print(url)
+    data = get(url, headers=headers).json()
+    body = data["data"]
+    for i in body:
+        if time.strftime('%Y-%m-%d') in i['start_time']:
+            if i not in all_list:
+                name = i['nickname']
+                start_time = i['start_time'].replace(time.strftime('%Y-%m-%d'), '')
+                print(f'今日开播时间：{start_time}  直播房间：{name}')
+                all_list.append(i)
+
+
+
+
+
 def main(phone, password):
     apiType = 1
-    try:
-        url = "https://gitee.com/kele2233/genxin/raw/master/telecomLiveInfo.json"
-        data = get(url, timeout=5).json()
-    except:
-        try:
-            url = "https://raw.githubusercontent.com/limoruirui/Hello-Wolrd/main/telecomLiveInfo.json"
-            #url = "https://api.ruirui.fun/telecom/getLiveInfo"
-            data = get(url, timeout=5).json()
-        except:
-            url = "https://xbk.189.cn/xbkapi/lteration/index/recommend/anchorRecommend?provinceCode=01"
-            random_phone = f"1537266{randint(1000, 9999)}"
-            headers = {
-                "referer": "https://xbk.189.cn/xbk/newHome?version=9.4.0&yjz=no&l=card&longitude=%24longitude%24&latitude=%24latitude%24&utm_ch=hg_app&utm_sch=hg_sh_shdbcdl&utm_as=xbk_tj&loginType=1",
-                "user-agent": f"CtClient;9.6.1;Android;12;SM-G9860;{b64encode(random_phone[5:11].encode()).decode().strip('=+')}!#!{b64encode(random_phone[0:5].encode()).decode().strip('=+')}"
-            }
-            data = get(url, headers=headers).json()
-            apiType = 2
+    #切换使用直接加载方式
+    data = list_d
+    # try:
+    #     url = "https://gitee.com/kele2233/genxin/raw/master/telecomLiveInfo.json"
+    #     data = get(url, timeout=5).json()
+    # except:
+    #     print("主直播接口失效，进入备用抓包接口")
+    #     data = list_d
+    #     # try:
+    #     #     url = "https://raw.githubusercontent.com/limoruirui/Hello-Wolrd/main/telecomLiveInfo.json"
+    #     #     #url = "https://api.ruirui.fun/telecom/getLiveInfo"
+    #     #     data = get(url, timeout=5).json()
+    #     # except:
+    #     #     url = "https://xbk.189.cn/xbkapi/lteration/index/recommend/anchorRecommend?provinceCode=01"
+    #     #     random_phone = f"1537266{randint(1000, 9999)}"
+    #     #     headers = {
+    #     #         "referer": "https://xbk.189.cn/xbk/newHome?version=9.4.0&yjz=no&l=card&longitude=%24longitude%24&latitude=%24latitude%24&utm_ch=hg_app&utm_sch=hg_sh_shdbcdl&utm_as=xbk_tj&loginType=1",
+    #     #         "user-agent": f"CtClient;9.6.1;Android;12;SM-G9860;{b64encode(random_phone[5:11].encode()).decode().strip('=+')}!#!{b64encode(random_phone[0:5].encode()).decode().strip('=+')}"
+    #     #     }
+    #     #     data = get(url, headers=headers).json()
+    #     #     apiType = 2
     print(data)
     liveListInfo = {}
     allLiveInfo = data.values() if apiType == 1 else data["data"]
@@ -236,6 +274,35 @@ def start(phone,password):
 
 
 if __name__ == '__main__':
+    list_d = {}
+    try:
+        url = "https://gitee.com/kele2233/genxin/raw/master/telecomLiveInfo.json"
+        #url = "https://raw.githubusercontent.com/limoruirui/Hello-Wolrd/main/telecomLiveInfo.json"
+        list_d = get(url, timeout=5).json()
+    except:
+        urls = get_urls()
+        print('主接口失效，进入备用接口，正在加载今日直播数据ing...')
+        threads = []
+        for url in urls:
+            threads.append(
+                threading.Thread(target=get_data, args=(url,))
+            )
+
+        for thread in threads:
+            thread.start()
+
+        for thread in threads:
+            thread.join()
+
+        
+        f = 1
+        for i in all_list:
+            list_d['liveRoom' + str(f)] = i
+            f += 1
+        print('直播数据加载完毕')
+        print('\n')
+
+
     l = []
     user_map = []
     cklist = get_cookie()
