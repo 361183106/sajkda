@@ -249,7 +249,6 @@ if __name__ == '__main__':
         if phone == "" or password == "":
             print("未填写相应变量 退出")
             exit(0)
-        #main(phone, password)
         p = threading.Thread(target=start,args=(phone,password))
         l.append(p)
         p.start()
