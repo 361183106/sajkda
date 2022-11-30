@@ -75,6 +75,7 @@ class TelecomLotter:
             for waresInfo in data["responseData"]["data"]["waresInfos"]:
                 print(waresInfo["title"])
                 if "转盘" in waresInfo["title"] or "抽奖" in waresInfo["title"]:
+                    print("进来开始抽奖了~")
                     active_code = findall(r"active_code\u003d(.*?)\u0026", waresInfo["link"])[0]
                     return active_code
             return None
@@ -323,9 +324,14 @@ if __name__ == '__main__':
             print("当前账号未填写手机号或者密码 跳过")
             print("\n")
             continue
-        p = threading.Thread(target=start,args=(phone,password))
-        l.append(p)
-        p.start()
+        if phone == "" or password == "":
+            print("未填写相应变量 退出")
+            exit(0)
+        main(phone, password)
         print("\n")
-    for i in l:
-        i.join()
+    #     p = threading.Thread(target=start,args=(phone,password))
+    #     l.append(p)
+    #     p.start()
+    #     print("\n")
+    # for i in l:
+    #     i.join()
