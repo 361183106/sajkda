@@ -222,7 +222,7 @@ def get_cookie():
 def start(phone):
     if phone == "":
         exit(0)
-    China_Unicom(phone_num).main()
+    China_Unicom(phone).main()
     print("\n")
     print("\n")        
 
