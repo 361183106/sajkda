@@ -34,7 +34,7 @@ from tools.encrypt_symmetric import Crypt
 from tools.send_msg import push
 from tools.tool import get_environ, random_sleep
 #random_sleep(0, 1600)
-
+from tools.ql_api import get_envs, disable_env, post_envs, put_envs
 
 """主类"""
 class China_Unicom:
@@ -205,10 +205,57 @@ class China_Unicom:
         exit(0)
 
 
-if __name__ == "__main__":
-    """读取环境变量"""
-    phone_num = get_environ("PHONE_NUM")
-    unicom_lotter = environ.get("UNICOM_LOTTER") if environ.get("UNICOM_LOTTER") else True
-    if phone_num == "":
+#获取ck
+def get_cookie():
+    ck_list = []
+    cookie = None
+    cookies = get_envs("PHONE_NUM")
+    for ck in cookies:
+        if ck.get('status') == 0:
+            ck_list.append(ck.get('value'))
+    if len(ck_list) < 1:
+        print('共配置{}条CK,请添加环境变量,或查看环境变量状态'.format(len(ck_list)))
+    return ck_list 
+
+        
+def start(phone,password):
+    if phone == "":
         exit(0)
     China_Unicom(phone_num).main()
+    print("\n")
+    print("\n")        
+
+    
+    
+        
+if __name__ == "__main__":
+    unicom_lotter = environ.get("UNICOM_LOTTER") if environ.get("UNICOM_LOTTER") else True
+    """读取环境变量"""
+    l = []
+    user_map = []
+    cklist = get_cookie()
+    for i in range(len(cklist)):
+        #以#分割开的ck
+        split1 = cklist[i].split("&")
+        if len(split1)>1:
+            for j in range(len(split1)):
+                user_map.append(split1[j])
+        else:
+            user_map.append(cklist[i])
+    
+   
+    
+    for i in range(len(user_map)):
+        phone=""
+        userinfo = user_map[i].split("&")[0]
+        print('开始执行第{}个账号：{}'.format((i+1),phone))
+        if phone == "":
+            print("当前账号未填写手机号 跳过")
+            print("\n")
+            continue
+        p = threading.Thread(target=start,args=(phone,password))
+        l.append(p)
+        p.start()
+        print("\n")
+    for i in l:
+        i.join()
