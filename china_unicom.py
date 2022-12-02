@@ -222,7 +222,7 @@ def get_cookie():
 def start(phone):
     if phone == "":
         exit(0)
-    main(phone_num)
+    China_Unicom(phone_num).main()
     print("\n")
     print("\n")        
 
@@ -254,7 +254,7 @@ if __name__ == "__main__":
             print("当前账号未填写手机号 跳过")
             print("\n")
             continue
-        p = threading.Thread(target=start,args=(phone))
+        p = threading.Thread(target=start,args=(phone,))
         l.append(p)
         p.start()
         print("\n")
