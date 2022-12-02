@@ -35,6 +35,7 @@ from tools.send_msg import push
 from tools.tool import get_environ, random_sleep
 #random_sleep(0, 1600)
 from tools.ql_api import get_envs, disable_env, post_envs, put_envs
+import threading
 
 """主类"""
 class China_Unicom:
@@ -247,7 +248,7 @@ if __name__ == "__main__":
     
     for i in range(len(user_map)):
         phone=""
-        userinfo = user_map[i].split("&")[0]
+        phone = user_map[i].split("&")[0]
         print('开始执行第{}个账号：{}'.format((i+1),phone))
         if phone == "":
             print("当前账号未填写手机号 跳过")
