@@ -33,7 +33,6 @@ from json import dumps
 from tools.encrypt_symmetric import Crypt
 from tools.send_msg import push
 from tools.tool import get_environ, random_sleep
-#random_sleep(0, 1600)
 from tools.ql_api import get_envs, disable_env, post_envs, put_envs
 
 """主类"""
@@ -218,7 +217,7 @@ def get_cookie():
     return ck_list 
 
         
-def start(phone,password):
+def start(phone):
     if phone == "":
         exit(0)
     China_Unicom(phone_num).main()
@@ -253,7 +252,7 @@ if __name__ == "__main__":
             print("当前账号未填写手机号 跳过")
             print("\n")
             continue
-        p = threading.Thread(target=start,args=(phone,password))
+        p = threading.Thread(target=start,args=(phone))
         l.append(p)
         p.start()
         print("\n")
