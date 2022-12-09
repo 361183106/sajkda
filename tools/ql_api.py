@@ -74,12 +74,12 @@ def get_config_and_envs(name: str = None) -> list:
             exportinfolist = []
             if len(rm_str_list) < 1:
                 exportinfolist = exportinfo.split("#")
-            #print('exportinfolistd的长度：{}'.format(len(exportinfolist)))
-            if len(exportinfolist) < 2 :
-                #去除首尾空格、单引号和双引号
-                exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
-            else:
-                exportinfo = ""
+                #print('exportinfolistd的长度：{}'.format(len(exportinfolist)))
+                if len(exportinfolist) < 2 :
+                    #去除首尾空格、单引号和双引号
+                    exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
+                else:
+                    exportinfo = ""
             #list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
             #print('exportinfo数据：{}'.format(exportinfo))
             #以空格分隔，数组0为export，数组1为后面需要的数据
