@@ -1,5 +1,6 @@
 import json, os
 import time
+from datetime import datetime
 
 import requests, re
 
@@ -81,12 +82,37 @@ def get_config_and_envs(name: str = None) -> list:
             list_all = exportinfo.split(" ")
             print('list_all数据：{}'.format(list_all))
             if len(list_all) > 1:
-                tmp = list_all[0].split("=")
+                tmp = list_all[1].split("=")
                 if len(tmp) > 1:
                     print('tmp数据：{}'.format(tmp))
                     info = tmp[0]
                     if name in info:
-                        data.append(tmp[1])
+                        data_tmp = []
+                        data_json = {
+                            'id': None,
+                            'value': tmp[1],
+                            'status': 0,
+                            'name': name,
+                            'remarks': "",
+                            'position': None,
+                            'timestamp': datetime.now().__format__("%Y%m%d%H%M%S"),
+                            'created': datetime.now().__format__("%Y%m%d%H%M%S")
+                        }
+                        if flag == 'old':
+                            data_json = {
+                            '_id': None,
+                            'value': tmp[1],
+                            'status': 0,
+                            'name': name,
+                            'remarks': "",
+                            'position': None,
+                            'timestamp': datetime.now().__format__("%Y%m%d%H%M%S"),
+                            'created': datetime.now().__format__("%Y%m%d%H%M%S")
+                            }
+                        #data_tmp.append(data_json)
+                        #json_data = json.dumps(data)
+                        #print json_data 
+                        data.append(data_json)
         print('第二次配置数据：{}'.format(data))
     return data
 
