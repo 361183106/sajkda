@@ -83,7 +83,7 @@ def get_config_and_envs(name: str = None) -> list:
             if len(list_all) > 1:
                 tmp = list_all[0].split("=")
                 if len(tmp) > 1:
-                    print('info数据：{}'.format(info))
+                    print('tmp数据：{}'.format(tmp))
                     info = tmp[0]
                     if name in info:
                         data.append(tmp[1])
