@@ -1,7 +1,7 @@
 import json, os
 import time
 
-import requests
+import requests, re
 
 ql_auth_path = '/ql/data/config/auth.json'
 ql_config_path = '/ql/data/config/config.sh'
