@@ -76,17 +76,15 @@ def get_config_and_envs(name: str = None) -> list:
                 exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
             else:
                 exportinfo = ""
-            list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
+            #list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
+            info = findall(r"export[ ](.+?)", exportinfo)[0]
             print('exportinfo数据：{}'.format(exportinfo))
-            print('list_all数据：{}'.format(list_all))
-            for info in list_all:
-                tmp = info.split("=")
-                
-                if len(tmp) > 1 :
-                    info = tmp[0]
-                    if name in info:
-                        
-                        data.append(tmp[1])
+            print('list_all数据：{}'.format(info))
+            tmp = info.split("=")
+            if len(tmp) > 1 :
+                info = tmp[0]
+                if name in info:
+                    data.append(tmp[1])
     print('第二次配置数据：{}'.format(data))
     return data
 
