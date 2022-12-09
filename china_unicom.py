@@ -258,7 +258,7 @@ class China_Unicom:
 def get_cookie():
     ck_list = []
     cookie = None
-    cookies = get_envs("PHONE_NUM")
+    cookies = get_config_and_envs("PHONE_NUM")
     for ck in cookies:
         if ck.get('status') == 0:
             ck_list.append(ck.get('value'))
