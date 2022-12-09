@@ -70,7 +70,7 @@ def get_config_and_envs(name: str = None) -> list:
             #print(line.strip())
             exportinfo = line.strip()
             #去除注释
-            exportinfolist = exportinfo.split("\#")
+            exportinfolist = exportinfo.split("#")
             
             if len(exportinfolist) > 1 :
                 exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
