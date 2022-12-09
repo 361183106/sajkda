@@ -67,10 +67,11 @@ def get_config_and_envs(name: str = None) -> list:
             # If line is empty then end of file reached
             if  not  line  :
                 break;
-            print(line.strip())
+            #print(line.strip())
             exportinfo = line.strip()
             #去除注释
             exportinfolist = exportinfo.split("\#")
+            print(exportinfolist)
             if len(exportinfolist) > 1 :
                 exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
             list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
