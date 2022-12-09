@@ -87,7 +87,7 @@ def get_config_and_envs(name: str = None) -> list:
             #print('list_all数据：{}'.format(list_all))
             if len(list_all) > 1:
                 #以=分割，查找需要的环境名字
-                tmp = list_all[1].split("=")
+                tmp = list_all[1].replace("\"","").replace("\'","").split("=")
                 if len(tmp) > 1:
                     
                     info = tmp[0]
