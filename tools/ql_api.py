@@ -86,7 +86,7 @@ def get_config_and_envs(name: str = None) -> list:
                     
                     info = tmp[0]
                     if name in info:
-                        print('需要的环境数据：{}'.format(tmp))
+                        #print('需要查询的环境数据：{}'.format(tmp))
                         data_tmp = []
                         data_json = {
                             'id': None,
