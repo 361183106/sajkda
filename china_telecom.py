@@ -418,7 +418,6 @@ def start(phone,password):
         telecom = ChinaTelecom(phone, password)
         telecom.main()
     print("\n")
-    print("\n")
 
 
 
