@@ -271,8 +271,7 @@ def start(phone,password):
 
 
 if __name__ == '__main__':
-   getData = []
-   getData=get_data()
+    getData = []
 #    try:
 #       url = "https://gitcode.net/weixin_52142858/telecomliveinfo/-/raw/master/telecomLiveInfo.json"
 #       getData = get(url, timeout=5).json()
@@ -284,7 +283,9 @@ if __name__ == '__main__':
 
 
 
+
     l = []
+    getData=get_data()
     user_map = []
     cklist = get_cookie("TELECOM_PHONE_PASSWORD")
     for i in range(len(cklist)):
