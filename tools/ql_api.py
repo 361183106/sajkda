@@ -59,6 +59,7 @@ def get_config_and_envs(name: str = None) -> list:
     j_data = res.json()
     if j_data['code'] == 200:
         data = j_data['data']
+    print('第一次配置数据：{}'.format(data))
     with open(ql_config_path, 'r', encoding='utf-8') as f:
         while  True:
             # Get next line from file
@@ -79,6 +80,7 @@ def get_config_and_envs(name: str = None) -> list:
                     info = tmp[0]
                     if name in info:
                         data.append(tmp[i])
+    print('第二次配置数据：{}'.format(data))
     return data
 
 
