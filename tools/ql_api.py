@@ -69,7 +69,7 @@ def get_config_and_envs(name: str = None) -> list:
             #print(line.strip())
             exportinfo = line.strip()
             #去除注释#行
-            list_all = re.findall(r'^#.+?)', exportinfo,re.DOTALL)
+            list_all = re.findall(r'^#.+?', exportinfo,re.DOTALL)
             exportinfolist = []
             if len(list_all) > 1:
                 exportinfolist = exportinfo.split("#")
