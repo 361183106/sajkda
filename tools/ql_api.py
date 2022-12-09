@@ -78,10 +78,11 @@ def get_config_and_envs(name: str = None) -> list:
             
             for info in list_all:
                 tmp = info.split("=")
+                print(tmp)
                 if len(tmp) > 1 :
                     info = tmp[0]
                     if name in info:
-                        print(tmp[1])
+                        
                         data.append(tmp[1])
     print('第二次配置数据：{}'.format(data))
     return data
