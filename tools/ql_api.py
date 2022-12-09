@@ -110,11 +110,9 @@ def get_config_and_envs(name: str = None) -> list:
                             'timestamp': int(time.time()*1000),
                             'created': int(time.time()*1000)
                             }
-                        #data_tmp.append(data_json)
-                        #json_data = json.dumps(data)
-                        print('需要的数据：{}'.format(data_json))
+                        #print('需要的数据：{}'.format(data_json))
                         data.append(data_json)
-        print('第二次配置数据：{}'.format(data))
+        #print('第二次配置数据：{}'.format(data))
     return data
 
 
