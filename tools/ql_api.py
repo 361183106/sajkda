@@ -81,7 +81,7 @@ def get_config_and_envs(name: str = None) -> list:
             list_all = exportinfo.split(" ")
             print('list_all数据：{}'.format(list_all))
             if len(list_all) > 1:
-                tmp = list_all.split("=")
+                tmp = list_all[0].split("=")
                 if len(tmp) > 1:
                     print('info数据：{}'.format(info))
                     info = tmp[0]
