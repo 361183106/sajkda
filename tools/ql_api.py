@@ -1,8 +1,7 @@
 import json, os
 import time
-from datetime import datetime
 
-import requests, re
+import requests
 
 ql_auth_path = '/ql/data/config/auth.json'
 ql_config_path = '/ql/data/config/config.sh'
@@ -60,7 +59,6 @@ def get_config_and_envs(name: str = None) -> list:
     j_data = res.json()
     if j_data['code'] == 200:
         data = j_data['data']
-    print('第一次配置数据：{}'.format(data))
     with open(ql_config_path, 'r', encoding='utf-8') as f:
         while  True:
             # Get next line from file
@@ -98,8 +96,8 @@ def get_config_and_envs(name: str = None) -> list:
                             'name': name,
                             'remarks': "",
                             'position': None,
-                            'timestamp': datetime.now().__format__("%Y%m%d%H%M%S"),
-                            'created': datetime.now().__format__("%Y%m%d%H%M%S")
+                            'timestamp': int(time.time()*1000),
+                            'created': int(time.time()*1000)
                         }
                         if flag == 'old':
                             data_json = {
@@ -109,8 +107,8 @@ def get_config_and_envs(name: str = None) -> list:
                             'name': name,
                             'remarks': "",
                             'position': None,
-                            'timestamp': datetime.now().__format__("%Y%m%d%H%M%S"),
-                            'created': datetime.now().__format__("%Y%m%d%H%M%S")
+                            'timestamp': int(time.time()*1000),
+                            'created': int(time.time()*1000)
                             }
                         #data_tmp.append(data_json)
                         #json_data = json.dumps(data)
