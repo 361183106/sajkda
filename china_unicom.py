@@ -286,7 +286,7 @@ if __name__ == "__main__":
     cklist = get_cookie("PHONE_NUM")
     unicom_lotter_list = get_cookie("UNICOM_LOTTER")
     unicom_lotter = True
-    if len(cklist) > 1:
+    if len(unicom_lotter_list) > 1:
         unicom_lotter = unicom_lotter_list[0]
     for i in range(len(cklist)):
         #以#分割开的ck
