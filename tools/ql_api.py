@@ -75,7 +75,8 @@ def get_config_and_envs(name: str = None) -> list:
             if len(exportinfolist) > 1 :
                 exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
             list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
-            print(list_all)
+            print('exportinfo数据：{}'.format(exportinfo))
+            #print('list_all数据：{}'.format(list_all))
             for info in list_all:
                 tmp = info.split("=")
                 
