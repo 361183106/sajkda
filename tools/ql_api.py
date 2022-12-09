@@ -4,10 +4,14 @@ import time
 import requests
 
 ql_auth_path = '/ql/data/config/auth.json'
+ql_config_path = '/ql/data/config/config.sh'
 #判断环境变量
 flag = 'new'
 if not os.path.exists(ql_auth_path):
     ql_auth_path = '/ql/config/auth.json'
+    ql_config_path = '/ql/config/config.sh'
+    if not os.path.exists(ql_config_path):
+        ql_config_path = '/ql/config/config.js'
     flag = 'old'
 # ql_auth_path = r'D:\Docker\ql\config\auth.json'
 ql_url = 'http://localhost:5600'
@@ -40,6 +44,42 @@ def get_envs(name: str = None) -> list:
     if j_data['code'] == 200:
         return j_data['data']
     return []
+
+
+# 查询环境变量+config.sh变量
+def get_config_and_envs(name: str = None) -> list:
+    params = {
+        't': int(time.time() * 1000)
+    }
+    #返回的数据data
+    data = []
+    if name is not None:
+        params['searchValue'] = name
+    res = requests.get(ql_url + '/api/envs', headers=__get__headers(), params=params)
+    j_data = res.json()
+    if j_data['code'] == 200:
+        data = j_data['data']
+    with open(ql_config_path, 'r', encoding='utf-8') as f:
+        while  True:
+            # Get next line from file
+            line  =  f.readline()
+            # If line is empty then end of file reached
+            if  not  line  :
+                break;
+            print(line.strip())
+            exportinfo = line.strip()
+            #去除注释
+            exportinfolist = linea.split("\#")
+            if len(exportinfolist) > 1 :
+                exportinfo = exportinfolist[0].strip().replace("\"","").replace("\'","")
+            list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
+            for info in list_all:
+                tmp = info.split("=")
+                if len(tmp) > 1 :
+                    info = tmp[0]
+                    if name in info:
+                        data.append(tmp[i])
+    return data
 
 
 # 新增环境变量
