@@ -83,7 +83,7 @@ def get_config_and_envs(name: str = None) -> list:
             #print('exportinfo数据：{}'.format(exportinfo))
             #以空格分隔，数组0为export，数组1为后面需要的数据
             list_all = exportinfo.split(" ")
-            #print('list_all数据：{}'.format(list_all))
+            print('list_all数据：{}'.format(list_all))
             if len(list_all) > 1:
                 #以=分割，查找需要的环境名字
                 tmp = list_all[1].split("=")
