@@ -34,7 +34,7 @@ from tools.encrypt_symmetric import Crypt
 from tools.send_msg import push
 from tools.tool import get_environ, random_sleep
 #random_sleep(0, 1600)
-from tools.ql_api import get_envs, disable_env, post_envs, put_envs
+from tools.ql_api import get_envs, get_config_and_envs, disable_env, post_envs, put_envs
 import threading
 
 """主类"""
