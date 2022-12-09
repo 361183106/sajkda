@@ -70,9 +70,9 @@ def get_config_and_envs(name: str = None) -> list:
             exportinfo = line.strip()
             #去除注释#行
             rm_str_list = re.findall(r'^#(.+?)', exportinfo,re.DOTALL)
-            print('list_all数据：{}'.format(rm_str_list))
+            print('rm_str_list数据：{}'.format(rm_str_list))
             exportinfolist = []
-            if len(rm_str_list) < 2:
+            if len(rm_str_list) < 1:
                 exportinfolist = exportinfo.split("#")
             #print('exportinfolistd的长度：{}'.format(len(exportinfolist)))
             if len(exportinfolist) < 2 :
