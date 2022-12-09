@@ -89,9 +89,10 @@ def get_config_and_envs(name: str = None) -> list:
                 #以=分割，查找需要的环境名字
                 tmp = list_all[1].split("=")
                 if len(tmp) > 1:
-                    print('tmp数据：{}'.format(tmp))
+                    
                     info = tmp[0]
                     if name in info:
+                        print('需要的环境数据：{}'.format(tmp))
                         data_tmp = []
                         data_json = {
                             'id': None,
