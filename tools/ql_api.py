@@ -77,11 +77,11 @@ def get_config_and_envs(name: str = None) -> list:
             else:
                 exportinfo = ""
             #list_all = re.findall(r'export[ ](.+?)', exportinfo,re.DOTALL)
-            print('exportinfo数据：{}'.format(exportinfo))
+            #print('exportinfo数据：{}'.format(exportinfo))
             list_all = exportinfo.split(" ")
             print('list_all数据：{}'.format(list_all))
             if len(list_all) > 1:
-                tmp = info.split("=")
+                tmp = list_all.split("=")
                 if len(tmp) > 1:
                     print('info数据：{}'.format(info))
                     info = tmp[0]
