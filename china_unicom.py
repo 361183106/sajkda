@@ -263,7 +263,7 @@ def get_cookie(name):
         if ck.get('status') == 0:
             ck_list.append(ck.get('value'))
     if len(ck_list) < 1:
-        print('变量{}共配置{}条CK,请添加环境变量,或查看环境变量状态'.format(len(name,ck_list)))
+        print('变量{}共配置{}条CK,请添加环境变量,或查看环境变量状态'.format(name,len(ck_list)))
     return ck_list 
 
         
