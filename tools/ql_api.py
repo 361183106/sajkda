@@ -70,7 +70,7 @@ def get_config_and_envs(name: str = None) -> list:
             exportinfo = line.strip()
             #去除注释#行
             rm_str_list = re.findall(r'^#(.+?)', exportinfo,re.DOTALL)
-            print('rm_str_list数据：{}'.format(rm_str_list))
+            #print('rm_str_list数据：{}'.format(rm_str_list))
             exportinfolist = []
             if len(rm_str_list) == 1:
                 exportinfolist = exportinfo.split("#")
@@ -89,7 +89,7 @@ def get_config_and_envs(name: str = None) -> list:
                 #以=分割，查找需要的环境名字
                 tmp = list_all[1].split("=")
                 if len(tmp) > 1:
-                    #print('tmp数据：{}'.format(tmp))
+                    print('tmp数据：{}'.format(tmp))
                     info = tmp[0]
                     if name in info:
                         data_tmp = []
