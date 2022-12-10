@@ -267,7 +267,7 @@ def start(phone):
     
         
 if __name__ == "__main__":
-    unicom_lotter = get_cookie("UNICOM_LOTTER", default=True)
+    unicom_lotter = get_environ("UNICOM_LOTTER", default=True)
     
     """读取环境变量"""
     l = []
