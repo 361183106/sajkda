@@ -1,16 +1,23 @@
 /*
+起飞线生活
 
 地址：
 复制链接浏览器打开：https://m.360buyimg.com/babel/jfs/t1/92036/6/19877/112205/6395f615E345e78a8/54de5ad81ae58017.png
 #小程序://起飞线生活
 
-0 1-23/3 * * *  
+ 
 
 抓取cluster.qifeixian.com域名
 查看请求头的x-ds-key
 变量格式：export qfxhd='' 多账号&或者@隔开
 
+[task_local]
+#今日越城
+0 1-23/3 * * * https://raw.githubusercontent.com/yuanter/misaka/master/qfxhd.js, tag=起飞线生活, enabled=true
+cron: 0 1-23/3 * * *
+const $ = new Env('起飞线生活');
 */
+
 
 const $ = new Env('起飞线生活');
 const axios = require('axios');
