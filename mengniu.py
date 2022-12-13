@@ -131,28 +131,19 @@ def isStart():
 
 
 def start(token):
-    # config={
-    # "token": token,
-    # "clientKey": "FIDBFh4U65amvCDIlvE92WECR8txa48K",
-    # "clientSecret": "qzEKyCTxQdaquxm5u2OJKB3bVTie4f9qHTQIDTIGxCc88egeIAyJ6QXQeow8whvU",
-    # "updateUrl": "/mp/api/user/seckill/ghg3/dff/dd2/dsfs2/e21d/vddc",
-    # "threadNumber": 200,
-    # "preTime": 2000,
-    # "desKey": "pZN8^thwwfKl8^oz",
-    # "domain": "https://mengniu-apig.xiaoyisz.com",
-    # "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.30(0x18001e31) NetType/WIFI Language/zh_CN",
-    # "Referer": "https://servicewechat.com/wx8e45b2134cbeddff/62/page-frame.html"
-    # }
+    config={
+        "token": token,
+        "clientKey": "FIDBFh4U65amvCDIlvE92WECR8txa48K",
+        "clientSecret": "qzEKyCTxQdaquxm5u2OJKB3bVTie4f9qHTQIDTIGxCc88egeIAyJ6QXQeow8whvU",
+        "updateUrl": "/mp/api/user/seckill/ghg3/dff/dd2/dsfs2/e21d/vddc",
+        "threadNumber": 200,
+        "preTime": 2000,
+        "desKey": "pZN8^thwwfKl8^oz",
+        "domain": "https://mengniu-apig.xiaoyisz.com",
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.30(0x18001e31) NetType/WIFI Language/zh_CN",
+        "Referer": "https://servicewechat.com/wx8e45b2134cbeddff/62/page-frame.html"
+        }
 
-
-    config = {}
-    try:
-        with open('./mengniu_config.json', 'r') as c:
-            rdConfigStr = c.read()
-        config = json.loads(rdConfigStr)
-    except Exception as e:
-        printf(f'加载配置文件异常：{str(e)}')
-        os.system('pause')
 
     '''
     time无需管 服务器获取
