@@ -1,6 +1,6 @@
 # 原仓库来源limoruirui/misaka，本仓库仅做修改
 
-# misaka
+# sajkda
 - 随缘维护和上传, 请不要上传或者转载到其它地方。
 - 本仓库脚本仅供用于学习及参考对应web/app的参数解密并提供对应demo用于测试,请不要询问如何多账号等
 - 食用方法都在脚本内,请自行查看。
@@ -10,7 +10,7 @@
 - 拉取整个仓库(部分文件可以单独跑)
   ```
   // 以下几条命令 请不要带着 $/# 一起复制 这两个符号只是代表了所需权限
-  $ git clone https://github.com/yuanter/misaka
+  $ git clone https://github.com/yuanter/sajkda
 - 安装依赖
   ```
   $ pip3 install -r requirements.txt
@@ -43,8 +43,8 @@
   打开面板-依赖管理-新建依赖 依赖类型选 python3 自动拆分选 是 把复制的东西粘贴在名称内 确定即可
   
   第二种方法: 进入容器中 依次执行
-  $ cd data/scripts/limoruirui_misaka
-  $ wget https://raw.githubusercontent.com/yuanter/misaka/master/requirements.txt
+  $ cd data/scripts/yuanter_sajkda
+  $ wget https://raw.githubusercontent.com/yuanter/sajkda/master/requirements.txt
   $ pip3 install -r requirements.txt
 - 按照脚本文件内的说明设置环境变量
 ## 环境变量说明 
