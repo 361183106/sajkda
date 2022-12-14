@@ -89,15 +89,18 @@ def getRKSign(timestamp, nonce):
     md5Str = f'clientKey={clientKey}&clientSecret={clientSecret}&nonce={nonce}&timestamp={timestamp}'
     return hashlib.md5(md5Str.encode('utf-8')).hexdigest().upper()
 
-def getRk(domain):
+def getRk(domain,head):
     timestamp = getTimestamp()
+    #printf(f'timestamp：{timestamp}')
     nonce = generate_random_str(16)
+    #printf(f'nonce：{nonce}')
     sign = getRKSign(timestamp, nonce)
+    #printf(f'sign：{sign}')
     url = f'{domain}/mengniu-world-cup/mp/api/user/baseInfo?timestamp={timestamp}&nonce={nonce}&signature={sign}'
-    
+    #printf(f'url：{url}')
+    res = requests.get(url=url, headers=head).json()
+    printf(res)
     try:
-        res = requests.get(url=url, headers=head).json()
-        printf(res)
         return res['data']['rk']
     except Exception:
         #printf('获取账号rk失败，该token已经触发风控机制，请重新抓包获取新token')
@@ -108,7 +111,7 @@ def getMilkSign(requestId, timestamp, rk):
     md5Str = f'requestId={requestId}&timestamp={timestamp}&key={rk}'
     return hashlib.md5(md5Str.encode('utf-8')).hexdigest()
 
-def skillMilk(rk, jsonId):
+def skillMilk(rk, jsonId,domain,updateUrl,head):
     timestamp = getTimestamp()
     requestId = generate_random_str(32)
     nonce = generate_random_str(16)
@@ -122,7 +125,7 @@ def skillMilk(rk, jsonId):
     printf(res)
     
 
-def isStart():
+def isStart(preTime):
     current_time = getTimestamp()
     if current_time >= (start_time - preTime):
         return True
@@ -183,7 +186,7 @@ def start(token):
     '''
     账号的rk 自动获取
     '''
-    rk = getRk(domain)
+    rk = getRk(domain,head)
     '''
     抢多少次最大24 多了触发风控机制 导致无法获取rk 所有接口返回{"code":500,"message":"非领奶时间"} 触发风控机制后需要更新toekn才能恢复正常
     '''
@@ -197,15 +200,15 @@ def start(token):
     rk = desDe(rk, desKey)
     jsonId = getJsonId()
     time.sleep(1)
-    skillMilk(rk, jsonId)
+    skillMilk(rk, jsonId,domain,updateUrl,head)
     time.sleep(1)
     tdList = []
 
     for i in range(threadNumber):
-        tdList.append(threading.Thread(target=skillMilk, args=(rk, jsonId)))
+        tdList.append(threading.Thread(target=skillMilk, args=(rk, jsonId,domain,updateUrl,head)))
 
     while True:
-        if isStart():
+        if isStart(preTime):
             for tdItem in tdList:
                 try:
                     tdItem.start()
@@ -216,7 +219,7 @@ def start(token):
         else:
             printf("等待开始...")
         time.sleep(0.1)
-    #os.system('pause')
+    os.system('pause')
 
 
 
