@@ -216,7 +216,7 @@ def start(token):
         else:
             printf("等待开始...")
         time.sleep(0.1)
-    os.system('pause')
+    #os.system('pause')
 
 
 
