@@ -4,7 +4,7 @@
 # @Author : github@yuanter https://github.com/yuanter
 # @Time : 2022/12/14 00:23
 # -------------------------------
-# cron "55 59 8 * * *" script-path=xxx.py,tag=匹配cron用
+# cron "57 59 8 * * *" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('蒙牛呛奶');
 """
 蒙牛呛奶 微信小程序入口:蒙牛世界杯 抓 领奖记录请求中的 Authorisation
