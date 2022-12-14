@@ -9,7 +9,7 @@
 """
 蒙牛呛奶 微信小程序入口:蒙牛世界杯 抓 领奖记录请求中的 Authorisation
 1. 脚本仅供学习交流使用, 请在下载后24h内删除
-2. 需要第三方库 requests 支持 命令行安装 pip3 install requests或者根据自己环境自行安装
+2. 需要第三方库 requests和pycryptodome 支持 命令行安装 pip3 install requests或pycryptodome，或者根据自己环境自行安装
 3. 环境变量说明 mengniuCK(必需)  自行新建环境变量添加
     mengniuCK 为你的Authorisation值  多账号使用&或者#隔开
 """
