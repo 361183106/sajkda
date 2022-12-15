@@ -135,17 +135,17 @@ def isStart(preTime):
 
 def start(token):
     config={
-        "token": token,
-        "clientKey": "FIDBFh4U65amvCDIlvE92WECR8txa48K",
-        "clientSecret": "qzEKyCTxQdaquxm5u2OJKB3bVTie4f9qHTQIDTIGxCc88egeIAyJ6QXQeow8whvU",
-        "updateUrl": "/mp/api/user/seckill/ghg3/dff/dd2/dsfs2/e21d/vddc",
-        "threadNumber": 200,
-        "preTime": 2000,
-        "desKey": "pZN8^thwwfKl8^oz",
-        "domain": "https://mengniu-apig.xiaoyisz.com",
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.30(0x18001e31) NetType/WIFI Language/zh_CN",
-        "Referer": "https://servicewechat.com/wx8e45b2134cbeddff/62/page-frame.html"
-        }
+      "token": token,
+      "clientKey": "odzedoYiN5DLKT9fRaQRzMUKV4qVaKRm",
+      "clientSecret": "IjQP8ED8kGavOIKztFfrDlKft5kpuKXa7afrj96w64dgUiP8ujtL7byHtlGFU3Fv",
+      "updateUrl": "/mp/api/user/seckill/xxfg/fdvf34/fg/bg/bfgbgf/21312",
+      "threadNumber": 200,
+      "preTime": 2000,
+      "desKey": "pZN8^thwwfKl8^oz",
+      "domain": "https://mengniu-apig.xiaoyisz.com",
+      "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.30(0x18001e31) NetType/WIFI Language/zh_CN",
+      "Referer": "https://servicewechat.com/wx8e45b2134cbeddff/62/page-frame.html"
+    }
 
 
     '''
