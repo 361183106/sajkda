@@ -121,8 +121,11 @@ def skillMilk(rk, jsonId,domain,updateUrl,head):
     head['sign'] = sign
     head['timestamp'] = str(timestamp)
     head['requestId'] = requestId
-    res = requests.get(url=url, headers=head, timeout=10).text
-    printf(res)
+    try:
+        res = requests.get(url=url, headers=head, timeout=10).text
+        printf(res)
+    except Exception as e:
+        printf(f'超过10s请求超时...')
     
 
 def isStart(preTime):
@@ -136,15 +139,15 @@ def isStart(preTime):
 def start(token):
     config={
       "token": token,
-      "clientKey": "odzedoYiN5DLKT9fRaQRzMUKV4qVaKRm",
-      "clientSecret": "IjQP8ED8kGavOIKztFfrDlKft5kpuKXa7afrj96w64dgUiP8ujtL7byHtlGFU3Fv",
-      "updateUrl": "/mp/api/user/seckill/xxfg/fdvf34/fg/bg/bfgbgf/21312",
+      "clientKey": "odzedoYiN5DLKJHGYFYGFJfRaQRzMUKV4qVaKRm",
+      "clientSecret": "IjQP8ED8kGavOIKJKHSUHDIOWJDOWIkpuKXa7afrj96w64dgUiP8ujtL7byHtlGFU3Fv",
+      "updateUrl": "/mp/api/user/seckill/ccb/fwjf/sadas/21ed/sadlk3/dassad",
       "threadNumber": 200,
       "preTime": 2000,
       "desKey": "pZN8^thwwfKl8^oz",
       "domain": "https://mengniu-apig.xiaoyisz.com",
       "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.30(0x18001e31) NetType/WIFI Language/zh_CN",
-      "Referer": "https://servicewechat.com/wx8e45b2134cbeddff/62/page-frame.html"
+      "Referer": "https://servicewechat.com/wx8e45b2134cbeddff/64/page-frame.html"
     }
 
 
