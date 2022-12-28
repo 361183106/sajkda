@@ -22,8 +22,8 @@ from requests import post, get, packages
 packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ":HIGH:!DH:!aNULL"
 from datetime import datetime, timedelta
 from asyncio import wait, sleep, run
-from tools.ql_api import get_cookie
 
+from tools.ql_api import get_cookie
 from tools.tool import timestamp, get_environ, print_now
 from tools.send_msg import push
 from china_telecom import ChinaTelecom
@@ -31,6 +31,8 @@ import threading
 import time
 import requests
 import json
+
+from notify import send
 
 class TelecomLotter:
     def __init__(self, phone, password):
@@ -185,6 +187,7 @@ def get_data():
     print('正在加载今日直播数据ing...')  
     all_list = []
     code = 1
+    msg_str = ""
     for i in range(35):
         if code < 10:
             code_str = '0' + str(code)
@@ -203,6 +206,10 @@ def get_data():
             if time.strftime('%Y-%m-%d') in i['start_time']:
                 if i not in all_list:              
                     print('今日开播时间：'+i['start_time']+' 直播间名称：'+i['nickname'] ) 
+                    print('安卓浏览器直接打开链接  ctclient://startapp/android/open?LinkType=5&Link=https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId']) ) 
+                    print('直接打开链接  https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId']) ) 
+                    print('\n')
+                    msg_str += '今日开播时间：'+i['start_time']+' 直播间名称：'+i['nickname']+'\n安卓浏览器直接打开链接：\nctclient://startapp/android/open?LinkType=5&Link=https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId'])+'\n直接打开链接：\nhttps://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId'])+'\n\n'
                     all_list.append(i)
         code += 1
     list = {}
@@ -212,6 +219,8 @@ def get_data():
         f += 1
     print('直播数据加载完毕')
     print('\n')
+    #发送消息
+    send('电信星播客直播通知', msg_str)
     return list
 
 
