@@ -205,10 +205,10 @@ def get_data():
         for i in body:
             if time.strftime('%Y-%m-%d') in i['start_time']:
                 if i not in all_list:              
-                    print('今日开播时间：'+i['start_time']+' 直播间名称：'+i['nickname'] ) 
-                    print('安卓浏览器直接打开链接  ctclient://startapp/android/open?LinkType=5&Link=https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId']) ) 
-                    print('直接打开链接  https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId']) ) 
-                    print('\n')
+                    # print('今日开播时间：'+i['start_time']+' 直播间名称：'+i['nickname'] ) 
+                    # print('安卓浏览器直接打开链接  ctclient://startapp/android/open?LinkType=5&Link=https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId']) ) 
+                    # print('直接打开链接  https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId']) ) 
+                    # print('\n')
                     msg_str += '今日开播时间：'+i['start_time']+' 直播间名称：'+i['nickname']+'\n安卓浏览器直接打开链接：\nctclient://startapp/android/open?LinkType=5&Link=https://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId'])+'\n直接打开链接：\nhttps://xbk.189.cn/xbk/livingRoom?liveId='+str(i['liveId'])+'\n\n'
                     all_list.append(i)
         code += 1
@@ -295,38 +295,38 @@ if __name__ == '__main__':
 
     l = []
     getData=get_data()
-    user_map = []
-    cklist = get_cookie("TELECOM_PHONE_PASSWORD")
-    for i in range(len(cklist)):
-        #以#分割开的ck
-        split1 = cklist[i].split("#")
-        if len(split1)>1:
-            for j in range(len(split1)):
-                split2 = split1[j].split("&")
-                if len(split2)>1:
-                    user_map.append(split1[j])
-        else:
-            userinfo = cklist[i].split("&")
-            if len(userinfo)>1:
-                user_map.append(cklist[i])
+    # user_map = []
+    # cklist = get_cookie("TELECOM_PHONE_PASSWORD")
+    # for i in range(len(cklist)):
+    #     #以#分割开的ck
+    #     split1 = cklist[i].split("#")
+    #     if len(split1)>1:
+    #         for j in range(len(split1)):
+    #             split2 = split1[j].split("&")
+    #             if len(split2)>1:
+    #                 user_map.append(split1[j])
+    #     else:
+    #         userinfo = cklist[i].split("&")
+    #         if len(userinfo)>1:
+    #             user_map.append(cklist[i])
 
 
 
-    for i in range(len(user_map)):
-        phone=""
-        password=""
-        userinfo = user_map[i].split("&")
-        if len(userinfo)>1:
-            phone = userinfo[0]
-            password = userinfo[1]
-        print('开始执行第{}个账号：{}'.format((i+1),phone))
-        if phone == "" or password == "":
-            print("当前账号未填写手机号或者密码 跳过")
-            print("\n")
-            continue
-        p = threading.Thread(target=start,args=(phone,password))
-        l.append(p)
-        p.start()
-        print("\n")
-    for i in l:
-        i.join()
+    # for i in range(len(user_map)):
+    #     phone=""
+    #     password=""
+    #     userinfo = user_map[i].split("&")
+    #     if len(userinfo)>1:
+    #         phone = userinfo[0]
+    #         password = userinfo[1]
+    #     print('开始执行第{}个账号：{}'.format((i+1),phone))
+    #     if phone == "" or password == "":
+    #         print("当前账号未填写手机号或者密码 跳过")
+    #         print("\n")
+    #         continue
+    #     p = threading.Thread(target=start,args=(phone,password))
+    #     l.append(p)
+    #     p.start()
+    #     print("\n")
+    # for i in l:
+    #     i.join()
