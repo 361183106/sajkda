@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -- coding: utf-8 --
 # -------------------------------
-# @Author : github@limoruirui https://github.com/limoruirui
+# @Author : github@limoruirui https://github.com/limoruirui by院长修改
 # @Time : 2023/1/27 21:03
 # cron "" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('某通畅游');
@@ -11,6 +11,7 @@
 2. 活动入口: 某通app首页-5g新通信-某通畅游
 3. 暂时先弄抓包版本 后续再加短信验证码获取token_online
 4. 环境变量 UNICOM_GAME_ACCOUNT_INFO 格式 某通手机号#appid#token_online
+    抓包得到appid和token_online，不要名称和等号，只要其内容值即可
     appid可抓包获取 安卓也有不抓包的方法 自行搜索
     token_online 抓包获取 搜索 mobileService/onLine 切换账号可触发此数据包 此数据包包含 token_online和appid
 5. 特别说明
@@ -244,9 +245,13 @@ if __name__ == '__main__':
     for i in range(len(cklist)):
         #以&分割开的ck
         split1 = cklist[i].split("&")
+        split2 = cklist[i].split("\n")
         if len(split1)>1:
             for j in range(len(split1)):
                 user_map.append(split1[j])
+        elif len(split2)>1:
+            for j in range(len(split2)):
+                user_map.append(split2[j])
         else:
             user_map.append(cklist[i])
 
