@@ -47,10 +47,16 @@ class CUG:
             "content-type": "application/x-www-form-urlencoded",
             "user-agent": self.run_ua
         }
-        data = post(url, headers=headers, data=body).json()
-        print(data)
-        self.ecs_token = data["ecs_token"]
-        # print(self.ecs_token)
+        try:
+            data = post(url, headers=headers, data=body).json()
+            print(data)
+            self.ecs_token = data["ecs_token"]
+            # print(self.ecs_token)
+        except Exception as e:
+            print(f"\n账号{self.phone_num}获取token请求出现错误,请检查CK是否正确或已失效，跳过该账号\n" )
+            exit(0)
+            
+
     def login(self):
         url = "https://game.wostore.cn/api/app//user/v2/login"
         body = {
@@ -74,23 +80,29 @@ class CUG:
             "accept-encoding": "gzip, deflate",
             "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
         }
-        data = post(url, headers=headers, json=body).json()
-        self.access_token = data["data"]["access_token"]
-        self.headers = {
-            "pragma": "no-cache",
-            "cache-control": "no-cache",
-            "accept": "application/json, text/plain, */*",
-            "authorization": self.access_token,
-            "user-agent": self.run_ua,
-            "origin": "https://web.wostore.cn",
-            "x-requested-with": "com.sinovatech.unicom.ui",
-            "sec-fetch-site": "same-site",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-dest": "empty",
-            "referer": "https://web.wostore.cn/",
-            "accept-encoding": "gzip, deflate",
-            "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
-        }
+        data = ""
+        try:
+            data = post(url, headers=headers, json=body).json()
+            self.access_token = data["data"]["access_token"]
+            self.headers = {
+                "pragma": "no-cache",
+                "cache-control": "no-cache",
+                "accept": "application/json, text/plain, */*",
+                "authorization": self.access_token,
+                "user-agent": self.run_ua,
+                "origin": "https://web.wostore.cn",
+                "x-requested-with": "com.sinovatech.unicom.ui",
+                "sec-fetch-site": "same-site",
+                "sec-fetch-mode": "cors",
+                "sec-fetch-dest": "empty",
+                "referer": "https://web.wostore.cn/",
+                "accept-encoding": "gzip, deflate",
+                "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
+            }
+        except Exception as e:
+            print(f"\n账号{self.phone_num}登录请求出现错误,请检查CK是否正确或已失效，跳过该账号\n" )
+            exit(0)
+        
 
     def check_in(self):
         url = "https://game.wostore.cn/api/app/user/v2/signIn"
@@ -156,8 +168,8 @@ class CUG:
         data = post(url, headers=self.headers, json=body).json()
         print(data)
         try:
-            print(f"账号{self.phone_num} 执行兑换5元话费结果为：{data['msg']}\n\n")
-            return f"账号{self.phone_num} 执行兑换5元话费结果为：{data['msg']}\n\n"
+            print(f"账号{self.phone_num}---执行兑换5元话费结果为：{data['msg']}\n\n")
+            return f"账号{self.phone_num}---执行兑换5元话费结果为：{data['msg']}\n\n"
         except Exception as e:
             print(f"账号{self.phone_num}出现错误，请求失败结果: " )
             print_now(data)
