@@ -1,4 +1,6 @@
 /*
+怪兽电宝
+
 抓包链接
 http://www.gcnkgwg.cn/
 变量 gsdbapp = unionid#token
