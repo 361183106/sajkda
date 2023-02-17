@@ -1,6 +1,4 @@
 /*
-来源 : github@AutMan7 https://github.com/AutMan7/AM.git
-日期: 2023/1/27 23:00
 
 
 软件：高通骁友会小程序
