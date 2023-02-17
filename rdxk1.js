@@ -1,6 +1,4 @@
 /*
-来源 : github@AutMan7 https://github.com/AutMan7/AM.git
-日期: 2023/1/23 08:10
 
 APP:https://m.reduxingke.com/down/register.html?spread=263324&incode=AUTMAN77
 域名:m.reduxingke.com  
