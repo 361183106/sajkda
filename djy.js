@@ -12,6 +12,7 @@ ruleId=7ea791839f7fe3168150396e51e30917  20元现金
 ruleId=02b48428177a44a4110034497668f808  100元现金
 使用代理：export JDPROXYURL="xxxxx"
 定时：10 59 23 * * *  23点59分10秒
+cron: 10 59 23 * * *
 */
 const $ = new Env('大赢家提现');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
