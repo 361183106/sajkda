@@ -17,7 +17,7 @@
     兑换话费参数(非必填) 参考第6点，默认兑换5元，其他的自行替换参数进去
 
     login文件夹内有短信验证码登录(经过几天的反馈测试 不一定能用 有人可以有人不行 暂未知道原因) 抄自小一佬 github@https://github.com/xream 感谢
-    默认不添加新crontab 需要手动新建 task yuanter_misaka/login/unicom_login.py
+    默认不添加新crontab 需要手动新建 task yuanter_sajkda/login/unicom_login.py
 5. 特别说明
     i.第一次运行会因为没有积分而无法进行积分抽奖 可再运行一次或者等第二天再抽奖即可 目前场次不多 不会每天都抽
     ii. 兑换话费已写 但未调用 有需要自行修改调用
